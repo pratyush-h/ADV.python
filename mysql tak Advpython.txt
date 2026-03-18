@@ -1,0 +1,294 @@
+C:\Users\praty>mysql -u root -p
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE giet_db;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE giet_db;
+Database changed
+mysql> CREATE TABLE giet (
+    ->     roll INT PRIMARY KEY,
+    ->     name VARCHAR(50),
+    ->     address VARCHAR(100),
+    ->     desig VARCHAR(50),
+    ->     salary INT,
+    ->     gender CHAR(1)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO giet (roll, name, address, desig, salary, gender) VALUES
+    -> (101, 'aman', 'delhi', 'doctor', 25000, 'M'),
+    -> (102, 'naman', 'gunupur', 'teacher', 15000, 'M'),
+    -> (103, 'raman', 'rayagad', 'plumber', 15000, 'M'),
+    -> (104, 'Navi', 'raipur', 'nurse', 15000, 'F'),
+    -> (105, 'Pavi', 'raigarh', 'police', 25000, 'F'),
+    -> (106, 'Ankit', 'china', 'singer', 45000, 'M'),
+    -> (107, 'Umesh', 'vizag', 'dancer', 45000, 'M'),
+    -> (108, 'ramesh', 'bihar', 'manager', 25000, 'M'),
+    -> (109, 'mahesh', 'patna', 'thied', 55000, 'M');
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM giet;
++------+--------+---------+---------+--------+--------+
+| roll | name   | address | desig   | salary | gender |
++------+--------+---------+---------+--------+--------+
+|  101 | aman   | delhi   | doctor  |  25000 | M      |
+|  102 | naman  | gunupur | teacher |  15000 | M      |
+|  103 | raman  | rayagad | plumber |  15000 | M      |
+|  104 | Navi   | raipur  | nurse   |  15000 | F      |
+|  105 | Pavi   | raigarh | police  |  25000 | F      |
+|  106 | Ankit  | china   | singer  |  45000 | M      |
+|  107 | Umesh  | vizag   | dancer  |  45000 | M      |
+|  108 | ramesh | bihar   | manager |  25000 | M      |
+|  109 | mahesh | patna   | thied   |  55000 | M      |
++------+--------+---------+---------+--------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT name FROM giet;
++--------+
+| name   |
++--------+
+| aman   |
+| naman  |
+| raman  |
+| Navi   |
+| Pavi   |
+| Ankit  |
+| Umesh  |
+| ramesh |
+| mahesh |
++--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT name, address FROM giet;
++--------+---------+
+| name   | address |
++--------+---------+
+| aman   | delhi   |
+| naman  | gunupur |
+| raman  | rayagad |
+| Navi   | raipur  |
+| Pavi   | raigarh |
+| Ankit  | china   |
+| Umesh  | vizag   |
+| ramesh | bihar   |
+| mahesh | patna   |
++--------+---------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT roll, salary FROM giet;
++------+--------+
+| roll | salary |
++------+--------+
+|  101 |  25000 |
+|  102 |  15000 |
+|  103 |  15000 |
+|  104 |  15000 |
+|  105 |  25000 |
+|  106 |  45000 |
+|  107 |  45000 |
+|  108 |  25000 |
+|  109 |  55000 |
++------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE name = 'aman';
++------+------+---------+--------+--------+--------+
+| roll | name | address | desig  | salary | gender |
++------+------+---------+--------+--------+--------+
+|  101 | aman | delhi   | doctor |  25000 | M      |
++------+------+---------+--------+--------+--------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM giet WHERE address = 'delhi';
++------+------+---------+--------+--------+--------+
+| roll | name | address | desig  | salary | gender |
++------+------+---------+--------+--------+--------+
+|  101 | aman | delhi   | doctor |  25000 | M      |
++------+------+---------+--------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE gender = 'M';
++------+--------+---------+---------+--------+--------+
+| roll | name   | address | desig   | salary | gender |
++------+--------+---------+---------+--------+--------+
+|  101 | aman   | delhi   | doctor  |  25000 | M      |
+|  102 | naman  | gunupur | teacher |  15000 | M      |
+|  103 | raman  | rayagad | plumber |  15000 | M      |
+|  106 | Ankit  | china   | singer  |  45000 | M      |
+|  107 | Umesh  | vizag   | dancer  |  45000 | M      |
+|  108 | ramesh | bihar   | manager |  25000 | M      |
+|  109 | mahesh | patna   | thied   |  55000 | M      |
++------+--------+---------+---------+--------+--------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE gender = 'M';
++------+--------+---------+---------+--------+--------+
+| roll | name   | address | desig   | salary | gender |
++------+--------+---------+---------+--------+--------+
+|  101 | aman   | delhi   | doctor  |  25000 | M      |
+|  102 | naman  | gunupur | teacher |  15000 | M      |
+|  103 | raman  | rayagad | plumber |  15000 | M      |
+|  106 | Ankit  | china   | singer  |  45000 | M      |
+|  107 | Umesh  | vizag   | dancer  |  45000 | M      |
+|  108 | ramesh | bihar   | manager |  25000 | M      |
+|  109 | mahesh | patna   | thied   |  55000 | M      |
++------+--------+---------+---------+--------+--------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE designation = 'doctor';
+ERROR 1054 (42S22): Unknown column 'designation' in 'where clause'
+mysql> SELECT * FROM giet WHERE salary = 15000;
++------+-------+---------+---------+--------+--------+
+| roll | name  | address | desig   | salary | gender |
++------+-------+---------+---------+--------+--------+
+|  102 | naman | gunupur | teacher |  15000 | M      |
+|  103 | raman | rayagad | plumber |  15000 | M      |
+|  104 | Navi  | raipur  | nurse   |  15000 | F      |
++------+-------+---------+---------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE salary > 20000;
++------+--------+---------+---------+--------+--------+
+| roll | name   | address | desig   | salary | gender |
++------+--------+---------+---------+--------+--------+
+|  101 | aman   | delhi   | doctor  |  25000 | M      |
+|  105 | Pavi   | raigarh | police  |  25000 | F      |
+|  106 | Ankit  | china   | singer  |  45000 | M      |
+|  107 | Umesh  | vizag   | dancer  |  45000 | M      |
+|  108 | ramesh | bihar   | manager |  25000 | M      |
+|  109 | mahesh | patna   | thied   |  55000 | M      |
++------+--------+---------+---------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE salary < 30000;
++------+--------+---------+---------+--------+--------+
+| roll | name   | address | desig   | salary | gender |
++------+--------+---------+---------+--------+--------+
+|  101 | aman   | delhi   | doctor  |  25000 | M      |
+|  102 | naman  | gunupur | teacher |  15000 | M      |
+|  103 | raman  | rayagad | plumber |  15000 | M      |
+|  104 | Navi   | raipur  | nurse   |  15000 | F      |
+|  105 | Pavi   | raigarh | police  |  25000 | F      |
+|  108 | ramesh | bihar   | manager |  25000 | M      |
++------+--------+---------+---------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE gender = 'M' AND salary > 20000;
++------+--------+---------+---------+--------+--------+
+| roll | name   | address | desig   | salary | gender |
++------+--------+---------+---------+--------+--------+
+|  101 | aman   | delhi   | doctor  |  25000 | M      |
+|  106 | Ankit  | china   | singer  |  45000 | M      |
+|  107 | Umesh  | vizag   | dancer  |  45000 | M      |
+|  108 | ramesh | bihar   | manager |  25000 | M      |
+|  109 | mahesh | patna   | thied   |  55000 | M      |
++------+--------+---------+---------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE gender = 'F' OR address = 'raipur';
++------+------+---------+--------+--------+--------+
+| roll | name | address | desig  | salary | gender |
++------+------+---------+--------+--------+--------+
+|  104 | Navi | raipur  | nurse  |  15000 | F      |
+|  105 | Pavi | raigarh | police |  25000 | F      |
++------+------+---------+--------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE name LIKE 'a%';
++------+-------+---------+--------+--------+--------+
+| roll | name  | address | desig  | salary | gender |
++------+-------+---------+--------+--------+--------+
+|  101 | aman  | delhi   | doctor |  25000 | M      |
+|  106 | Ankit | china   | singer |  45000 | M      |
++------+-------+---------+--------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE name LIKE '%h';
++------+--------+---------+---------+--------+--------+
+| roll | name   | address | desig   | salary | gender |
++------+--------+---------+---------+--------+--------+
+|  107 | Umesh  | vizag   | dancer  |  45000 | M      |
+|  108 | ramesh | bihar   | manager |  25000 | M      |
+|  109 | mahesh | patna   | thied   |  55000 | M      |
++------+--------+---------+---------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet WHERE address LIKE '%pur%';
++------+-------+---------+---------+--------+--------+
+| roll | name  | address | desig   | salary | gender |
++------+-------+---------+---------+--------+--------+
+|  102 | naman | gunupur | teacher |  15000 | M      |
+|  104 | Navi  | raipur  | nurse   |  15000 | F      |
++------+-------+---------+---------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet ORDER BY name ASC;
++------+--------+---------+---------+--------+--------+
+| roll | name   | address | desig   | salary | gender |
++------+--------+---------+---------+--------+--------+
+|  101 | aman   | delhi   | doctor  |  25000 | M      |
+|  106 | Ankit  | china   | singer  |  45000 | M      |
+|  109 | mahesh | patna   | thied   |  55000 | M      |
+|  102 | naman  | gunupur | teacher |  15000 | M      |
+|  104 | Navi   | raipur  | nurse   |  15000 | F      |
+|  105 | Pavi   | raigarh | police  |  25000 | F      |
+|  103 | raman  | rayagad | plumber |  15000 | M      |
+|  108 | ramesh | bihar   | manager |  25000 | M      |
+|  107 | Umesh  | vizag   | dancer  |  45000 | M      |
++------+--------+---------+---------+--------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM giet ORDER BY salary DESC;
++------+--------+---------+---------+--------+--------+
+| roll | name   | address | desig   | salary | gender |
++------+--------+---------+---------+--------+--------+
+|  109 | mahesh | patna   | thied   |  55000 | M      |
+|  106 | Ankit  | china   | singer  |  45000 | M      |
+|  107 | Umesh  | vizag   | dancer  |  45000 | M      |
+|  101 | aman   | delhi   | doctor  |  25000 | M      |
+|  105 | Pavi   | raigarh | police  |  25000 | F      |
+|  108 | ramesh | bihar   | manager |  25000 | M      |
+|  102 | naman  | gunupur | teacher |  15000 | M      |
+|  103 | raman  | rayagad | plumber |  15000 | M      |
+|  104 | Navi   | raipur  | nurse   |  15000 | F      |
++------+--------+---------+---------+--------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(*) FROM giet;
++----------+
+| COUNT(*) |
++----------+
+|        9 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT COUNT(*) FROM giet WHERE gender = 'M';
++----------+
+| COUNT(*) |
++----------+
+|        7 |
++----------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
