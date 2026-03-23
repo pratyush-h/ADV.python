@@ -1,42 +1,24 @@
-#Banking system with Transaction
-import time
 
-accounts = {
-    "1001": 5000,
-    "1002": 3000,
-    "1003": 7000
-}
+mixed_tuple = (10, "Python", 3.14, True, 42, "AI", 7, False)
+numeric_values = tuple(
+    item for item in mixed_tuple 
+    if isinstance(item, (int, float)) and not isinstance(item, bool)
+)
 
-TIME_LIMIT = 5
+print(f"Original Tuple: {mixed_tuple}")
+print(f"Filtered Numeric Tuple: {numeric_values}")
 
-while True:
-    print("\n--- Banking System ---")
-    sender = input("Enter sender account number: ")
-    receiver = input("Enter receiver account number: ")
+try:
+    print("\nAttempting to change the first element to 99...")
+    mixed_tuple[0] = 99
+except TypeError as error:
+    print(f"Caught Error: {error}")
+    print("Reason: Tuples are immutable; you cannot reassign their elements.")
 
-    if sender not in accounts or receiver not in accounts:
-        print("Error: Incorrect account number")
-        continue
+tuple_one = (1, 2, 3)
+tuple_two = ("A", "B", "C")
+combined_tuple = tuple_one + tuple_two
 
-    start = time.time()
-
-    amount = float(input("Enter amount to transfer: "))
-
-    if time.time() - start > TIME_LIMIT:
-        print("Transaction timeout")
-        continue
-
-    if accounts[sender] < amount:
-        print("Error: Overdraft! Not enough balance")
-        continue
-
-    accounts[sender] -= amount
-    accounts[receiver] += amount
-
-    print("Transaction successful!")
-    print("Sender Balance:", accounts[sender])
-    print("Receiver Balance:", accounts[receiver])
-
-    cont = input("Another transaction? (y/n): ")
-    if cont.lower() != "y":
-        break
+print(f"\nTuple 1: {tuple_one}")
+print(f"Tuple 2: {tuple_two}")
+print(f"Concatenated Result: {combined_tuple}")

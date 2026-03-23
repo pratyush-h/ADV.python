@@ -1,98 +1,32 @@
-student grade management
-class StudentGradeSystem:
-    def __init__(self):
-        self.students = {}
+# Task 2: Sentence Processing
+text = input("Enter a sentence: ")
 
-    # Add student
-    def add_student(self, student_id, grade):
-        try:
-            if student_id in self.students:
-                print("Student ID already exists.")
-                return
+# 1. Count Vowels and Consonants
+vowels = "aeiou"
+v_count = 0
+c_count = 0
 
-            if grade == "":
-                raise ValueError("Grade cannot be empty.")
-
-            grade = float(grade)
-            self.students[student_id] = grade
-            print("Student added successfully.")
-
-        except ValueError:
-            print("Invalid grade type. Please enter a numeric value.")
-
-    # Update grade
-    def update_grade(self, student_id, grade):
-        try:
-            if student_id not in self.students:
-                raise KeyError("Invalid student ID.")
-
-            if grade == "":
-                raise ValueError("Grade cannot be empty.")
-
-            grade = float(grade)
-            self.students[student_id] = grade
-            print("Grade updated successfully.")
-
-        except KeyError:
-            print("Student ID not found.")
-        except ValueError:
-            print("Invalid grade input.")
-
-    # Delete student
-    def delete_student(self, student_id):
-        try:
-            if student_id not in self.students:
-                raise KeyError("Invalid student ID.")
-
-            del self.students[student_id]
-            print("Student deleted successfully.")
-
-        except KeyError:
-            print("Student ID not found.")
-
-    # Display students
-    def display_students(self):
-        if not self.students:
-            print("No student records available.")
+# Clean the text to check only alphabetic characters
+for char in text.lower():
+    if char.isalpha():
+        if char in vowels:
+            v_count += 1
         else:
-            print("\nStudent Records:")
-            for sid, grade in self.students.items():
-                print(f"ID: {sid} | Grade: {grade}")
+            c_count += 1
 
+# 2. Reverse the sentence
+# Using slicing [start:stop:step] with a step of -1
+reversed_text = text[::-1]
 
-# Main Program
-system = StudentGradeSystem()
+# 3. Replace spaces with underscores
+underscored_text = text.replace(" ", "_")
 
-while True:
-    print("\n--- Student Grade Management System ---")
-    print("1. Add Student")
-    print("2. Update Grade")
-    print("3. Delete Student")
-    print("4. Display Students")
-    print("5. Exit")
+# 4. Capitalize words (Title Case)
+capitalized_text = text.title()
 
-    choice = input("Enter choice: ")
-
-    if choice == "1":
-        sid = input("Enter Student ID: ")
-        grade = input("Enter Grade: ")
-        system.add_student(sid, grade)
-
-    elif choice == "2":
-        sid = input("Enter Student ID: ")
-        grade = input("Enter New Grade: ")
-        system.update_grade(sid, grade)
-
-    elif choice == "3":
-        sid = input("Enter Student ID: ")
-        system.delete_student(sid)
-
-    elif choice == "4":
-        system.display_students()
-
-    elif choice == "5":
-        print("Exiting program...")
-        break
-
-    else:
-        print("Invalid choice. Please try again.")
+# --- Display Results ---
+print(f"\nOriginal: {text}")
+print(f"Vowels: {v_count} | Consonants: {c_count}")
+print(f"Reversed: {reversed_text}")
+print(f"Underscored: {underscored_text}")
+print(f"Capitalized: {capitalized_text}")
